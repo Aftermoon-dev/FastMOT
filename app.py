@@ -93,8 +93,11 @@ def main():
                             tl = track.tlbr[:2] / config.resize_to * stream.resolution
                             br = track.tlbr[2:] / config.resize_to * stream.resolution
                             w, h = br - tl + 1
-                            txt.write(f'{mot.frame_count},{track.trk_id},{tl[0]:.6f},{tl[1]:.6f},'
-                                      f'{w:.6f},{h:.6f},-1,-1,-1\n')
+                            # txt.write(f'{mot.frame_count},{track.trk_id},{tl[0]:.6f},{tl[1]:.6f},'
+                            #           f'{w:.6f},{h:.6f},-1,-1,-1\n')
+
+                            # New Text Format 
+                            txt.write(f'{mot.frame_count} {track.trk_id} {tl[0] + w / 2:.6f} {(tl[1] + h) - 10:.6f}')
 
                 if args.show:
                     cv2.imshow('Video', frame)
